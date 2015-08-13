@@ -1,14 +1,12 @@
 #Responsify
 
-Responsify is my take at creating a responsive grid system. It is somewhat based off of Bootstrap and Unsemantic.
-
-The Responsify grid is uses percents. To sepcify the default percent of a div use `col-{percent}`, and use `col-tablet-{percent}` and `col-mobile-{percent}` for tablets and mobile phones.
+Responsify is my take at creating a responsive grid system. It is largely based off of Bootstrap's grid system except Responsify uses percentages rather than multiples of 12. I found the multiples of 12 used in Bootstrap to be inefficient as it calls for a person to constantly convert the multiples into percents in their head.
 
 **Example usage**
 ```
 	<div class="container">
-		<div class="col-33 col-tablet-50 col-mobile-100"></div>
-		<div class="col-33 col-tablet-50 col-mobile-100"></div>
-		<div class="col-33 col-tablet-100"></div>
+		<div class="col-33 col-md-50 col-xs-100"></div>
+		<div class="col-33 col-md-50 col-xs-100"></div>
+		<div class="col-33 col-md-100"></div>
 	</div>
 ```
