@@ -1,0 +1,247 @@
+/*
+Author: Santiago Ramirez
+Author URI: http://santiagoramirez.net
+Project URI: http://github.com/santiagoramirez/responsify
+*/
+
+$max-width: 1024px;
+
+$scale-lg: 1024px;
+$scale-md: 900px;
+$scale-sm: 768px;
+$scale-xs: 480px;
+
+$scale-names: "lg" "md" "sm" "xs";
+$scale-widths: $scale-lg $scale-md $scale-sm $scale-xs;
+
+$mq-lg: "only screen and (max-width: " + $scale-lg + ")";
+$mq-md: "only screen and (max-width: " + $scale-md + ")";
+$mq-sm: "only screen and (max-width: " + $scale-sm + ")";
+$mq-xs: "only screen and (max-width: " + $scale-xs + ")";
+
+/* =grid-system
+------------------------------------------------------------------------------*/
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xs,
+.container-fluid {
+	clear: both;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.container {
+	max-width: $max-width;
+	min-width: 0px;
+}
+
+.container-fluid {
+	max-width: 100%;
+	min-width: 0px;
+}
+
+.container-lg {
+	max-width: $scale-lg;
+	min-width: 0px;
+}
+
+.container-md {
+	max-width: $scale-md;
+	min-width: 0px;
+}
+
+.container-sm {
+	max-width: $scale-sm;
+	min-width: 0px;
+}
+
+.container-xs {
+	max-width: $scale-xs;
+	min-width: 0px;
+}
+
+$i: 5;
+@while $i <= 100 {
+	.col-#{$i} {
+		float: left;
+		width: percentage($i / 100);
+	}
+
+	$i : $i + 5;
+}
+
+.col-33 {
+	float: left;
+	width: 33.33333%;
+}
+
+.col-66 {
+	float: left;
+	width: 66.66667%;
+}
+
+$i: 1;
+@each $scale-name in $scale-names {
+	$max-width: nth($scale-widths, $i);
+	$min-width: 0px;
+
+	@if $i < 4 {
+		$min-width: nth($scale-widths, $i + 1);
+	}
+
+	@media only screen and (max-width: $max-width) and (min-width: $min-width) {
+		$j: 5;
+		@while $j <= 100 {
+			.col-#{$scale-name}-#{$j} {
+				float: left;
+				width: percentage($j / 100);
+			}
+			$j: $j + 5;
+		}
+
+		.col-#{$scale-name}-33 {
+			float: left;
+			width: 33.33333%;
+		}
+
+		.col-#{$scale-name}-66 {
+			float: left;
+			width: 66.66667%;
+		}
+	}
+	$i: $i + 1;
+}
+
+.hide {
+	display: none;
+}
+
+@media #{$mq-lg} {
+	.hide-lg {
+		display: none;
+	}
+}
+
+@media #{$mq-md} and (min-width: #{$scale-sm}) {
+	.hide-md {
+		display: none;
+	}
+}
+
+@media #{$mq-sm} and (min-width: #{$scale-xs}) {
+	.hide-sm {
+		display: none;
+	}
+}
+
+@media #{$mq-xs} and (min-width: 0px) {
+	.hide-xs {
+		display: none;
+	}
+}
+
+/* =reset
+------------------------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+    outline: none;
+}
+
+input, textarea, select {
+    outline: none;
+}
+
+/* =rebuild
+------------------------------------------------------------------------------*/
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+/* =classes
+------------------------------------------------------------------------------*/
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.img-responsive {
+    height: auto;
+    width: 100%;
+    line-height: 0;
+}
+
+.text-center {
+    text-align: center;
+}
